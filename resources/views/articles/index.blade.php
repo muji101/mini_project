@@ -10,7 +10,7 @@
 {{-- @section('link', '/articles/create') --}}
 
 @section('content')
-<a href="/articles/create" class="btn btn-primary my-2">Add</a>
+{{-- <a href="/articles/create" class="btn btn-primary my-2">Add</a> --}}
 
     <div class="row" id="table-hover-row">
         <div class="col-12">

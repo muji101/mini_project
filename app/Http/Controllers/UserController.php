@@ -14,8 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        return view('users.index',['users'=> $users]);
+        // $users = User::get();
+        // return view('users.index',['users'=> $users]);
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -25,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -36,7 +38,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect()->route('user.index');
     }
 
     /**

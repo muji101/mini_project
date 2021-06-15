@@ -14,17 +14,18 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form form-vertical" action="" method="POST">
+                        <form class="form form-vertical" action="{{ route('user.store') }}" method="POST">
                             @csrf
+                            @method('POST')
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group has-icon-left">
-                                            <label for="first-name-icon">Name</label>
+                                            <label for="first-name-icon">Full Name</label>
                                             <div class="position-relative">
                                                 <input type="text" class="form-control"
                                                     placeholder="Name"
-                                                    id="first-name-icon">
+                                                    id="first-name-icon" name="name">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-person"></i>
                                                 </div>
@@ -37,9 +38,33 @@
                                             <label for="email-id-icon">Email</label>
                                             <div class="position-relative">
                                                 <input type="text" class="form-control"
-                                                    placeholder="Email" id="email-id-icon">
+                                                    placeholder="Email" id="email-id-icon" name="email">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-envelope"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="password-id-icon">Password</label>
+                                            <div class="position-relative">
+                                                <input type="password" class="form-control"
+                                                    placeholder="Password" id="password-id-icon" name="password">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-lock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group has-icon-left">
+                                            <label for="password-id-icon">Retype Password</label>
+                                            <div class="position-relative">
+                                                <input type="password" class="form-control"
+                                                    placeholder="Retype Password" id="password-id-icon" name="password_confirmation">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-lock"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -49,25 +74,14 @@
                                             <label for="mobile-id-icon">Image</label>
                                             <div class="position-relative">
                                                 <input type="file" class="form-control"
-                                                    placeholder="image" id="image-id-icon">
+                                                    placeholder="image" id="formFile" name="image">
                                                 {{-- <div class="form-control-icon">
                                                     <i class="bi bi-image"></i>
                                                 </div> --}}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group has-icon-left">
-                                            <label for="password-id-icon">Password</label>
-                                            <div class="position-relative">
-                                                <input type="password" class="form-control"
-                                                    placeholder="Password" id="password-id-icon">
-                                                <div class="form-control-icon">
-                                                    <i class="bi bi-lock"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     {{-- <div class="col-12">
                                         <div class='form-check'>
                                             <div class="checkbox mt-2">

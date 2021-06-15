@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/create', function () {
-    return view('users.create');
-});
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/users/create', [UserController::class, 'store'])->name('user.store');
+
 Route::get('/users/edit', function () {
     return view('users.edit');
 });

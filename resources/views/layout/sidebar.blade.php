@@ -1,3 +1,65 @@
+@php
+    
+    $dashboard = [
+        'title' => 'Dashboard',
+        'url' =>'/',
+        'icon' => 'bi bi-grid-fill'
+
+    ];
+
+    $user = [
+        'title' => 'Users',
+        'url' => '#',
+        'icon' => 'bi bi-person-fill',
+        'childerns' => [
+            [
+            'title' => 'Liset Users',
+            'url' => '/users'
+            ],
+            [
+            'title' => 'Create User',
+            'url' => '/users/create'
+            ],
+        ]
+    ];
+
+    $article = [
+        'title' => 'Articles',
+        'url' => '#',
+        'icon' => 'bi bi-border-width',
+        'childerns' => [
+            [
+            'title' => 'Liset Articles',
+            'url' => '/articles'
+            ],
+            [
+            'title' => 'Create Article',
+            'url' => '/articles/create'
+            ],
+        ]
+
+    ];
+
+    $categories = [
+        'title' => 'Categories',
+        'url' => '#',
+        'icon' => 'bi bi-grid-fill',
+        'childerns' => [
+            [
+            'title' => 'Liset Categories',
+            'url' => '/categories'
+            ],
+            [
+            'title' => 'Create Categories',
+            'url' => '/categories/create'
+            ],
+        ]
+    ];
+
+    $menus = [$dashboard, $user , $article, $categories];
+    
+    
+@endphp
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
@@ -14,14 +76,37 @@
             <ul class="menu">
                 
                 <li class="sidebar-title">Menu</li>
-                <li class="sidebar-item @yield('active1')">
-                    <a href="/" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
 
-                <li class="sidebar-item @yield('active2')">
+                @foreach ($menus as $menu)
+                    {{-- isset() mengecek ada atau nggak suatu data kalau ada true kalo tidak false --}}
+                    @if (isset($menu['childerns']))
+                        <li class="sidebar-item  has-sub">
+                            <a href="{{ $menu['url'] }}" class='sidebar-link'>
+                                <i class="{{ $menu['icon'] }}"></i>
+                                <span>{{ $menu['title'] }}</span>
+                            </a>
+                            <ul class="submenu ">
+                                @foreach ($menu['childerns'] as $item)
+                                    <li class="submenu-item ">
+                                        <a href="{{ $item['url'] }}">{{ $item['title'] }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            
+                        </li>
+                    @else
+                        <li class="sidebar-item @yield('active1')">
+                            <a href="{{ $menu['url'] }}" class='sidebar-link'>
+                                <i class="{{ $menu['icon'] }}"></i>
+                                <span>{{ $menu['title'] }}</span>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+                
+                
+
+                {{-- <li class="sidebar-item @yield('active2')">
                     <a href="/articles" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Articles</span>
@@ -38,7 +123,7 @@
                         <i class="bi bi-person-badge-fill"></i>
                         <span>Users</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
