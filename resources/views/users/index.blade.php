@@ -39,14 +39,17 @@
                                         <td class="text-bold-500">{{ $no++ }}</td>
                                         <td class="text-bold-500">{{ $data->name }}</td>
                                         <td class="text-bold-500">{{ $data->email }}</td>
-                                        <td class="text-bold-500">{{ $data->image }}</td>
+                                        {{-- <td class="text-bold-500"><img src="{{ asset('profile/'. $data->image) }}" alt="" style="width: 60px"></td>
+                                        <td> --}}
+                                            {{-- memanggil gambar di public --}}
+                                        <td class="text-bold-500"><img src="/profile/{{  $data->image }}" alt="image profile" style="width: 60px; height: 60px;"></td>
                                         <td>
-                                            <a href="/users/edit"><i
-                                                    class="btn btn-primary">Edit</i>
-                                            </a>
-                                            <a href="#"><i
-                                                    class="btn btn-danger">Delete</i>
-                                            </a>
+                                            <a href="{{ route('user.edit', $data->id) }}" class="btn btn-warning btn-small">edit</a>
+                                            <form class="d-inline-block" action="{{ route('user.delete', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-small">delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

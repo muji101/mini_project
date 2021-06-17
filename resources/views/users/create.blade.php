@@ -7,6 +7,16 @@
 @section('main_title', 'Users Create')
 
 @section('content')
+    {{-- menampilkan pesan error di create --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <div class="col-md-12 col-12">
             <div class="card">
                 <div class="card-header">
@@ -14,7 +24,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form form-vertical" action="{{ route('user.store') }}" method="POST">
+                        <form class="form form-vertical" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                             <div class="form-body">
@@ -23,7 +33,7 @@
                                         <div class="form-group has-icon-left">
                                             <label for="first-name-icon">Full Name</label>
                                             <div class="position-relative">
-                                                <input type="text" class="form-control"
+                                                <input value="{{ old('name') }}" type="text" class="form-control"
                                                     placeholder="Name"
                                                     id="first-name-icon" name="name">
                                                 <div class="form-control-icon">
@@ -37,7 +47,7 @@
                                         <div class="form-group has-icon-left">
                                             <label for="email-id-icon">Email</label>
                                             <div class="position-relative">
-                                                <input type="text" class="form-control"
+                                                <input value="{{ old('email') }}" type="email" class="form-control"
                                                     placeholder="Email" id="email-id-icon" name="email">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-envelope"></i>
@@ -49,7 +59,7 @@
                                         <div class="form-group has-icon-left">
                                             <label for="password-id-icon">Password</label>
                                             <div class="position-relative">
-                                                <input type="password" class="form-control"
+                                                <input value="{{ old('password') }}" type="password" class="form-control"
                                                     placeholder="Password" id="password-id-icon" name="password">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-lock"></i>
@@ -61,7 +71,8 @@
                                         <div class="form-group has-icon-left">
                                             <label for="password-id-icon">Retype Password</label>
                                             <div class="position-relative">
-                                                <input type="password" class="form-control"
+                                                {{-- old() menyimpan data yang dulu agar tidak hilang --}}
+                                                <input value="{{ old('password_confirmation') }}" type="password" class="form-control"
                                                     placeholder="Retype Password" id="password-id-icon" name="password_confirmation">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-lock"></i>
@@ -71,10 +82,10 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="mobile-id-icon">Image</label>
+                                            <label for="mobile-id-icon">Upload your profile image</label>
                                             <div class="position-relative">
-                                                <input type="file" class="form-control"
-                                                    placeholder="image" id="formFile" name="image">
+                                                <input value="{{ old('image') }}" type="file" class="form-control"
+                                                    placeholder="image" id="formFile" name="image_file">
                                                 {{-- <div class="form-control-icon">
                                                     <i class="bi bi-image"></i>
                                                 </div> --}}

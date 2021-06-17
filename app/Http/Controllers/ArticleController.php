@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
-
+use App\Models\Category;
+use App\Models\User;
 class ArticleController extends Controller
 {
     /**
@@ -14,8 +15,13 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::get();
-        return view('articles.index',['articles'=> $articles]);
+        $articles = Article::all();
+        $categories = Category::all();
+        $users = User::all();
+
+        return view('articles.index',['articles'=> $articles, 'categories'=> $categories, 'users'=> $users]);
+        // return view('articles.index', compact('categories','articles','users'));
+
     }
 
     /**
@@ -25,7 +31,13 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $articles = Article::get();
+        $categories = Category::all();
+        $users = User::all();
+
+
+        // return view('articles.create',['articles'=> $articles]);
+        return view('articles.create', compact('categories','articles','users'));
     }
 
     /**
@@ -36,7 +48,23 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required|min:10|max:1000',
+            'image_file' => 'required',
+            'user_id',
+            'category_id'
+        ]);
+
+        $image = $request->file('image_file');
+        $new_name_image =time() . '.'. $image->getClientOriginalExtension();
+        $image->move(public_path('profile'), $new_name_image);
+        $request->merge([
+            'image' => $new_name_image
+        ]);
+
+        Article::create($request->all());
+        return redirect()->route('article.index');
     }
 
     /**
@@ -58,7 +86,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Article::find($id);
+        return view('articles.edit', compact('data'));
     }
 
     /**
@@ -70,7 +99,18 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Article::find($id);
+        
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required|min:10|max:1000',
+            'image' => 'required',
+            'user_id',
+            'category_id'
+        ]);
+
+        $data->update($request->all());
+        return redirect()->route('article.index');
     }
 
     /**
@@ -81,6 +121,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Article::find($id);
+        $data->delete();
+        return back();
     }
 }
