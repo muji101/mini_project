@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-md-8">
                                 <h6 class="text-muted font-semibold">Articles</h6>
-                                <h6 class="font-extrabold mb-0">114</h6>
+                                <h6 class="font-extrabold mb-0">{{ $jml_articles }}</h6>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-8">
                                 <h6 class="text-muted font-semibold">Categories</h6>
-                                <h6 class="font-extrabold mb-0">18</h6>
+                                <h6 class="font-extrabold mb-0">{{ $jml_categories }}</h6>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-8">
                                 <h6 class="text-muted font-semibold">Users</h6>
-                                <h6 class="font-extrabold mb-0">8</h6>
+                                <h6 class="font-extrabold mb-0">{{ $jml_users }}</h6>
                             </div>
                         </div>
                     </div>

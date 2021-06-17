@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [DashboardController::class, 'index']);
+
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/users/create', [UserController::class, 'store'])->name('user.store');

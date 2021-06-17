@@ -24,7 +24,7 @@
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <form class="form form-vertical" action="{{ route('category.update', $data->id) }}" method="POST">
+                    <form class="form form-vertical" action="{{ route('category.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-body">

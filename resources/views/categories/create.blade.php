@@ -24,7 +24,7 @@
             </div>
             <div class="card-content">
                 <div class="card-body">
-                    <form class="form form-vertical" action="{{ route('category.store') }}" method="POST">
+                    <form class="form form-vertical" action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <div class="form-body">

@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form form-vertical" action="{{ route('user.update', $data->id) }}" method="POST">
+                        <form class="form form-vertical" action="{{ route('user.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-body">
@@ -59,8 +59,21 @@
                                         <div class="form-group has-icon-left">
                                             <label for="password-id-icon">Current Password</label>
                                             <div class="position-relative">
+                                                
                                                 <input  type="password" class="form-control"
-                                                    placeholder="Password" id="password-id-icon" name="current_password" value="{{ old('current_password',$data->password) }}">
+                                                    placeholder="Password" id="password" name="current_password" value="{{ old('current_password',$data->password) }}">
+                                                    {{-- <input class="form-control" type="password" name="password" id="passwordInput" placeholder="Password"> --}}
+                                                    <span onclick="myFunction()" class="input-group-text" id="basic-addon2"><i class="bi bi-eye-fill"></i></span>
+                                                    <script>
+                                                        function myFunction() {
+                                                            var x = document.getElementById("password");
+                                                            if (x.type === "password") {
+                                                                x.type = "text";
+                                                            } else {
+                                                                x.type = "password";
+                                                                }
+                                                            } 
+                                                    </script>
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-lock"></i>
                                                 </div>

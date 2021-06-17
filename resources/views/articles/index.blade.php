@@ -37,18 +37,18 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($articles as $data)
+                                @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td class="text-bold-500">{{ $data->title }}</td>
-                                        <td>{{ $data->content }}</td>
-                                        <td class="text-bold-500"><img src="/profile/{{ $data->image }}" alt="gambar" style="width: 60px"></td>
-                                        {{-- <td class="text-bold-500"><a href="{{ store('app/public/'. $data->gambar) }}"></a></td> --}}
-                                        <td class="text-bold-500">{{ $data->user_id }}</td>
-                                        <td class="text-bold-500">{{ $data->category_id }}</td>
+                                        <td class="text-bold-500">{{ $item->title }}</td>
+                                        <td>{{ $item->content }}</td>
+                                        <td class="text-bold-500"><img src="/profile/{{ $item->image }}" alt="gambar" style="width: 60px"></td>
+                                        {{-- <td class="text-bold-500"><a href="{{ store('app/public/'. $item->gambar) }}"></a></td> --}}
+                                        <td class="text-bold-500">{{ $item->user->name }}</td>
+                                        <td class="text-bold-500">{{ $item->category->name }}</td>
                                         <td>
-                                            <a href="{{ route('article.edit', $data->id) }}" class="btn btn-warning btn-small">edit</a>
-                                            <form class="d-inline-block" action="{{ route('article.delete', $data->id) }}" method="POST">
+                                            <a href="{{ route('article.edit', $item->id) }}" class="btn btn-warning btn-small">edit</a>
+                                            <form class="d-inline-block" action="{{ route('article.delete', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-small">delete</button>

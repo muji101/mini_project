@@ -26,6 +26,7 @@
                                     <th>NO</th>
                                     <th>NAME</th>
                                     <th>EMAIL</th>
+                                    <th>ARTICLES</th>
                                     <th>IMAGE</th>
                                     <th>ACTION</th>
                                 </tr>
@@ -39,6 +40,7 @@
                                         <td class="text-bold-500">{{ $no++ }}</td>
                                         <td class="text-bold-500">{{ $data->name }}</td>
                                         <td class="text-bold-500">{{ $data->email }}</td>
+                                        <td class="text-bold-500">{{ $jml_articles }}</td>
                                         {{-- <td class="text-bold-500"><img src="{{ asset('profile/'. $data->image) }}" alt="" style="width: 60px"></td>
                                         <td> --}}
                                             {{-- memanggil gambar di public --}}

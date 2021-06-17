@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 use App\Models\User;
 
 class UserController extends Controller
@@ -17,7 +18,14 @@ class UserController extends Controller
         // $users = User::get();
         // return view('users.index',['users'=> $users]);
         $users = User::all();
-        return view('users.index', compact('users'));
+        $articles = Article::all();
+
+        // $jml_articles = Article::where( 'user_id', '==', $users->id)->count();
+        $jml_users = User::where( 'id', '==', $articles->user_id)->count();
+
+        // return view('users.index', compact('users','articles'));
+        return view('users.index')->with(['users' => $users ,'jml_articles' => $jml_users]);
+
     }
 
     /**
@@ -51,11 +59,17 @@ class UserController extends Controller
         // $request->image_file->store('public');
 
         //menyimpan file di public dengan nama folder profile
-        $image = $request->file('image_file');
-        $new_name_image =time() . '.'. $image->getClientOriginalExtension();
-        $image->move(public_path('profile'), $new_name_image);
+        // $image = $request->file('image_file');
+        // $new_name_image =time() . '.'. $image->getClientOriginalExtension();
+        // $image->move(public_path('profile'), $new_name_image);
+        // $request->merge([
+        //     'image' => $new_name_image
+        // ]);
+
+        $image_file = $this->uploadImage($request->file('image_file'));
+
         $request->merge([
-            'image' => $new_name_image
+            'image' => $image_file
         ]);
 
         User::create($request->all());
@@ -101,8 +115,14 @@ class UserController extends Controller
             'name'=> 'required|min:5|max:25',
             'email'=> 'required|min:5|max:25|email:rfc,dns',
             'current_password' => 'required',
-            'password'=> 'required|min:5|max:25|confirmed',
-            'image'=> 'required'
+            'password',
+            'image'
+        ]);
+
+        $image_file = $this->uploadImage($request->file('image_file'));
+
+        $request->merge([
+            'image' => $image_file
         ]);
 
         
@@ -127,5 +147,14 @@ class UserController extends Controller
         $data = User::find($id);
         $data->delete();
         return back();
+    }
+
+    public function uploadImage($image)
+    {
+        // $image = $request->file('image_file');
+        $new_name_image =time() . '.'. $image->getClientOriginalExtension();
+        $image->move(public_path('profile'), $new_name_image);
+        return $new_name_image;
+        
     }
 }

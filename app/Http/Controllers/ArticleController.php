@@ -14,12 +14,12 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $articles = Article::all();
-        $categories = Category::all();
-        $users = User::all();
+    {   
+        //eager loading = with()
+        $data = Article::with(['user', 'category'])->get();
+        // dd($data->toArray());
 
-        return view('articles.index',['articles'=> $articles, 'categories'=> $categories, 'users'=> $users]);
+        return view('articles.index',compact('data'));
         // return view('articles.index', compact('categories','articles','users'));
 
     }
@@ -52,15 +52,23 @@ class ArticleController extends Controller
             'title' => 'required',
             'content' => 'required|min:10|max:1000',
             'image_file' => 'required',
-            'user_id',
-            'category_id'
+            'user_id' => 'required',
+            'category_id' => 'required'
         ]);
+        //cara 1
+        // $image = $request->file('image_file');
+        // $new_name_image =time() . '.'. $image->getClientOriginalExtension();
+        // $image->move(public_path('profile'), $new_name_image);
+        // $request->merge([
+        //     'image' => $new_name_image
+        // ]);
+        
 
-        $image = $request->file('image_file');
-        $new_name_image =time() . '.'. $image->getClientOriginalExtension();
-        $image->move(public_path('profile'), $new_name_image);
+        //cara 2
+        $image_file = $this->uploadImage($request->file('image_file'));
+
         $request->merge([
-            'image' => $new_name_image
+            'image' => $image_file
         ]);
 
         Article::create($request->all());
@@ -86,8 +94,10 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $data = Article::find($id);
-        return view('articles.edit', compact('data'));
+        $articles = Article::findOrFail($id);
+        $categories = Category::all();
+        $users = User::all();
+        return view('articles.edit', compact('articles','categories','users'));
     }
 
     /**
@@ -104,9 +114,22 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required|min:10|max:1000',
-            'image' => 'required',
+            'image_file' => 'required',
             'user_id',
             'category_id'
+        ]);
+
+        // dd($request);
+        //delete image
+        $img_path = public_path('/profile'. $data->image);
+        if (file_exists($img_path)){
+            unlink($img_path);
+        }
+
+
+        $image_file = $this->uploadImage($request->file('image_file'));
+        $request->merge([
+            'image' => $image_file
         ]);
 
         $data->update($request->all());
@@ -124,5 +147,14 @@ class ArticleController extends Controller
         $data = Article::find($id);
         $data->delete();
         return back();
+    }
+
+    public function uploadImage($image)
+    {
+        // $image = $request->file('image_file');
+        $new_name_image =time() . '.'. $image->getClientOriginalExtension();
+        $image->move(public_path('profile'), $new_name_image);
+        return $new_name_image;
+        
     }
 }
