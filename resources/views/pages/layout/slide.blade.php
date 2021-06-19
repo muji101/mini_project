@@ -12,7 +12,7 @@
                         </div>
                         <div class="card-body">
                             <a href="">Food and Drink</a>
-                            <h2 class="card-text">Far far away behind the Word Mountains far from Away.</h2>
+                            <h2 class="slide-text fw-normal">Far far away behind the Word Mountains far from Away.</h2>
                             <p>Far far away, behind the word mountains!</p>
                         </div>
                         <div class="card-footer text-muted">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body">
                             <a href="">Food and Drink</a>
-                            <h2 class="card-text">Far far away behind the Word Mountains far from Away.</h2>
+                            <h2 class="slide-text fw-normal">Far far away behind the Word Mountains far from Away.</h2>
                             <p>Far far away, behind the word mountains!</p>
                         </div>
                         <div class="card-footer text-muted">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="card-body">
                             <a href="">Food and Drink</a>
-                            <h2 class="card-text">Far far away behind the Word Mountains far from Away.</h2>
+                            <h2 class="slide-text fw-normal">Far far away behind the Word Mountains far from Away.</h2>
                             <p>Far far away, behind the word mountains!</p>
                         </div>
                         <div class="card-footer text-muted">
