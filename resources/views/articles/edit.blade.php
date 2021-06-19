@@ -71,9 +71,9 @@
                                     <div class="form-group has-icon-left">
                                         <div class="form-group">
                                             <label for="mobile-id-icon">Category</label>
-                                            <select class="choices form-select" name="category">
+                                            <select class="choices form-select" name="category_id">
                                                 @foreach ($categories as $item)
-                                                <option value="{{ $item->id }}" {{ $item->id == $articles->category_id ? "selected" : ""}}>{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}" {{ $item->id == $articles->category_id ? "selected" : ""}}>{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -83,7 +83,7 @@
                                     <div class="form-group has-icon-left">
                                         <div class="form-group">
                                             <label for="mobile-id-icon">User</label>
-                                            <select class="choices form-select" name="user">
+                                            <select class="choices form-select" name="user_id">
                                                 @foreach ($users as $item)
                                                     <option value="{{ $item->id }}" {{ $item->id == $articles->user_id ? "selected" : ""}}>{{ $item->name }}</option>
                                                 @endforeach

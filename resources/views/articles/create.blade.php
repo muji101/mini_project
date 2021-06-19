@@ -56,18 +56,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group ">
-                                        <label for="mobile-id-icon">Image</label>
-                                        <div class="position-relative">
-                                            <input type="file" class="form-control"
-                                                placeholder="image" id="image-id-icon" name="image_file">
-                                            {{-- <div class="form-control-icon">
-                                                <i class="bi bi-image"></i>
-                                            </div> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
                                     <div class="form-group has-icon-left">
                                         <div class="form-group">
                                             <label for="mobile-id-icon">Category</label>
@@ -93,6 +81,18 @@
                                                 {{-- <option value="muji">muji1</option>
                                                 <option value="muji2">muji2</option> --}}
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group ">
+                                        <label for="mobile-id-icon">Image</label>
+                                        <div class="position-relative">
+                                            <input type="file" class="form-control"
+                                                placeholder="image" id="image-id-icon" name="image_file">
+                                            {{-- <div class="form-control-icon">
+                                                <i class="bi bi-image"></i>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

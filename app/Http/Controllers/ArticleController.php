@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
@@ -46,15 +47,8 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required|min:10|max:1000',
-            'image_file' => 'required',
-            'user_id' => 'required',
-            'category_id' => 'required'
-        ]);
         //cara 1
         // $image = $request->file('image_file');
         // $new_name_image =time() . '.'. $image->getClientOriginalExtension();
@@ -72,7 +66,7 @@ class ArticleController extends Controller
         ]);
 
         Article::create($request->all());
-        return redirect()->route('article.index');
+        return redirect()->route('article.index')->with('sukses-store', 'Data berhasil di buat');
     }
 
     /**
@@ -83,7 +77,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Article::find($id);
+
+        return view('articles.detail', compact('data'));
     }
 
     /**
@@ -109,28 +105,30 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Article::find($id);
+        $data = Article::findOrFail($id);
         
         $request->validate([
             'title' => 'required',
-            'content' => 'required|min:10|max:1000',
-            'image_file' => 'required',
-            'user_id',
-            'category_id'
+            'content' => 'required',
+            'user_id' => 'required',
+            'category_id' => 'required'
         ]);
 
-        // dd($request);
-        //delete image
-        $img_path = public_path('/profile'. $data->image);
-        if (file_exists($img_path)){
-            unlink($img_path);
+        // dd($request->all());
+        
+        //menghapus sekalian mengaupload bila perlu
+        if($request->file('image_file') == null){
+            $request->merge([
+                'image' => $data->image
+            ]);
+        }else {
+            $this->removeImage($data->image);
+            $image_file = $this->uploadImage($request->image_file);
+            $request->merge([
+                'image' => $image_file
+            ]);
         }
 
-
-        $image_file = $this->uploadImage($request->file('image_file'));
-        $request->merge([
-            'image' => $image_file
-        ]);
 
         $data->update($request->all());
         return redirect()->route('article.index');
@@ -144,17 +142,26 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $data = Article::find($id);
+        $data = Article::findOrFail($id);
+        $this->removeImage($data->image);
         $data->delete();
+
         return back();
     }
-
+    //mengupload gambar
     public function uploadImage($image)
     {
-        // $image = $request->file('image_file');
         $new_name_image =time() . '.'. $image->getClientOriginalExtension();
         $image->move(public_path('profile'), $new_name_image);
         return $new_name_image;
         
+    }
+    
+    //unlink buat menghapus file
+    public function removeImage($image)
+    {   
+        if (file_exists('profile/'. $image)){
+        unlink('profile/'. $image);
+        }
     }
 }

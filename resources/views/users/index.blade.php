@@ -14,6 +14,11 @@
     <div class="row" id="table-hover-row">
         <div class="col-12">
             <div class="card">
+                
+                @if (session('sukses-store'))
+                    <div class="alert alert-success">{{ session('sukses-store') }}</div>
+                @endif
+                
                 <div class="card-header">
                     <h4 class="card-title">List Users</h4>
                 </div>
@@ -40,13 +45,14 @@
                                         <td class="text-bold-500">{{ $no++ }}</td>
                                         <td class="text-bold-500">{{ $data->name }}</td>
                                         <td class="text-bold-500">{{ $data->email }}</td>
-                                        <td class="text-bold-500">{{ $jml_articles }}</td>
+                                        <td class="text-bold-500">{{ $data->article->count() }}</td>
                                         {{-- <td class="text-bold-500"><img src="{{ asset('profile/'. $data->image) }}" alt="" style="width: 60px"></td>
                                         <td> --}}
                                             {{-- memanggil gambar di public --}}
                                         <td class="text-bold-500"><img src="/profile/{{  $data->image }}" alt="image profile" style="width: 60px; height: 60px;"></td>
                                         <td>
                                             <a href="{{ route('user.edit', $data->id) }}" class="btn btn-warning btn-small">edit</a>
+                                            <a href="{{ route('user.detail', $data->id) }}" class="btn btn-success btn-small">detail</a>
                                             <form class="d-inline-block" action="{{ route('user.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

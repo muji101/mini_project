@@ -79,7 +79,7 @@
             <div class="card-body py-4 px-5">
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-xl">
-                        <img src="/dist/assets/images/faces/6.jpg" alt="Face 1">
+                        <img src="/dist/assets/images/faces/6.jpg" alt="Face 6">
                     </div>
                     <div class="ms-3 name">
                         <h5 class="font-bold">John Duck</h5>

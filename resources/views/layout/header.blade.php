@@ -15,4 +15,8 @@
     <link rel="stylesheet" href="/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/dist/assets/css/app.css">
     <link rel="shortcut icon" href="/dist/assets/images/favicon.svg" type="image/x-icon">
+
+    {{-- splide --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
 </head>

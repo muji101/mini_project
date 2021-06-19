@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
 
-class CategoryController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('categories.index',['categories'=> $categories]);
+        return view('pages.index');
     }
 
     /**
@@ -25,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        //
     }
 
     /**
@@ -36,13 +34,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        Category::create($request->all());
-        return redirect()->route('category.index')->with('sukses-store', 'Data berhasil di buat');
-
+        //
     }
 
     /**
@@ -64,8 +56,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = Category::find($id);
-        return view('categories.edit', compact('data'));
+        //
     }
 
     /**
@@ -77,15 +68,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Category::find($id);
-
-        $request->validate([
-            'name' => 'required'
-        ]);
-
-        $data->update($request->all());
-
-        return redirect()->route('category.index');
+        //
     }
 
     /**
@@ -96,8 +79,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = Category::find($id);
-        $data->delete();
-        return back();
+        //
     }
 }

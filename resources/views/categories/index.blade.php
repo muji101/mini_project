@@ -14,6 +14,9 @@
     <div class="row" id="table-hover-row">
         <div class="col-12">
             <div class="card">
+                @if (session('sukses-store'))
+                        <div class="alert alert-success">{{ session('sukses-store') }}</div>
+                    @endif
                 <div class="card-header">
                     <h4 class="card-title">List Categories</h4>
                 </div>

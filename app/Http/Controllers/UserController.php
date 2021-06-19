@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\User;
@@ -15,16 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::get();
-        // return view('users.index',['users'=> $users]);
-        $users = User::all();
-        $articles = Article::all();
-
-        // $jml_articles = Article::where( 'user_id', '==', $users->id)->count();
-        $jml_users = User::where( 'id', '==', $articles->user_id)->count();
-
-        // return view('users.index', compact('users','articles'));
-        return view('users.index')->with(['users' => $users ,'jml_articles' => $jml_users]);
+        $users = User::get();
+        return view('users.index',['users'=> $users]);
 
     }
 
@@ -44,17 +37,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         //Request untuk menerima data kemudian ditampung di $request
         // dd($request->all());
         //vallidate memastikan data valid
-        $request->validate([
-            'name'=> 'required|min:5|max:25',
-            'email'=> 'required|min:5|max:25|email:rfc,dns',
-            'password'=> 'required|min:5|max:25|confirmed',
-            'image_file'=> 'required|mimes:jpg,jpeg,png,svg,bmp'
-        ]);
+        
+        // $request->validate([
+        //     'name'=> 'required|min:5|max:25',
+        //     'email'=> 'required|min:5|max:25|email:rfc,dns|unique:users,email',
+        //     'password'=> 'required|min:5|max:25|confirmed',
+        //     'image_file'=> 'required|mimes:jpg,jpeg,png,svg,bmp'
+        // ]);
+        
         // menyimpan file di storage
         // $request->image_file->store('public');
 
@@ -74,7 +69,7 @@ class UserController extends Controller
 
         User::create($request->all());
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('sukses-store', 'Data berhasil di buat');
     }
 
     /**
@@ -85,7 +80,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = User::find($id);
+
+        return view('users.detail', compact('data'));
     }
 
     /**
@@ -115,15 +112,27 @@ class UserController extends Controller
             'name'=> 'required|min:5|max:25',
             'email'=> 'required|min:5|max:25|email:rfc,dns',
             'current_password' => 'required',
-            'password',
+            'password', 
             'image'
         ]);
 
-        $image_file = $this->uploadImage($request->file('image_file'));
+        if($request->file('image_file') == null){
+            $request->merge([
+                'image' => $data->image
+            ]);
+        }else {
+            $this->removeImage($data->image);
+            $image_file = $this->uploadImage($request->image_file);
+            $request->merge([
+                'image' => $image_file
+            ]);
+        }
 
-        $request->merge([
-            'image' => $image_file
-        ]);
+        // $image_file = $this->uploadImage($request->file('image_file'));
+
+        // $request->merge([
+        //     'image' => $image_file
+        // ]);
 
         
         $data->update($request->all());
@@ -156,5 +165,13 @@ class UserController extends Controller
         $image->move(public_path('profile'), $new_name_image);
         return $new_name_image;
         
+    }
+
+    //unlink buat menghapus file
+    public function removeImage($image)
+    {   
+        if (file_exists('profile/'. $image)){
+        unlink('profile/'. $image);
+        }
     }
 }

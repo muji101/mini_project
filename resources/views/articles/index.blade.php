@@ -20,6 +20,9 @@
                 </div>
                 <div class="card-content">
                     <!-- table hover -->
+                    @if (session('sukses-store'))
+                        <div class="alert alert-success">{{ session('sukses-store') }}</div>
+                    @endif
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
                             <thead>
@@ -48,6 +51,7 @@
                                         <td class="text-bold-500">{{ $item->category->name }}</td>
                                         <td>
                                             <a href="{{ route('article.edit', $item->id) }}" class="btn btn-warning btn-small">edit</a>
+                                            <a href="{{ route('article.detail', $item->id) }}" class="btn btn-success btn-small">detail</a>
                                             <form class="d-inline-block" action="{{ route('article.delete', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
