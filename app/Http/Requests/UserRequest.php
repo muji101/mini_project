@@ -26,8 +26,8 @@ class UserRequest extends FormRequest
         return [
             'name'=> 'required|min:5|max:25',
             'email'=> 'required|min:5|max:25|email:rfc,dns|unique:users,email',
-            'password' => 'required', 
-            'image' => 'required'
+            'password'=> 'required|min:5|max:25|confirmed',
+            'image_file'=> 'required|mimes:jpg,jpeg,png,svg,bmp'
         ];
     }
 

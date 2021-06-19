@@ -2,7 +2,7 @@
     
     $dashboard = [
         'title' => 'Dashboard',
-        'url' =>'/',
+        'url' =>'/dashboard',
         'icon' => 'bi bi-grid-fill'
 
     ];
@@ -14,11 +14,11 @@
         'childerns' => [
             [
             'title' => 'Liset Users',
-            'url' => '/users'
+            'url' => '/admin/users'
             ],
             [
             'title' => 'Create User',
-            'url' => '/users/create'
+            'url' => '/admin/users/create'
             ],
         ]
     ];
@@ -30,11 +30,11 @@
         'childerns' => [
             [
             'title' => 'Liset Articles',
-            'url' => '/articles'
+            'url' => '/admin/articles'
             ],
             [
             'title' => 'Create Article',
-            'url' => '/articles/create'
+            'url' => '/admin/articles/create'
             ],
         ]
 
@@ -47,11 +47,11 @@
         'childerns' => [
             [
             'title' => 'Liset Categories',
-            'url' => '/categories'
+            'url' => '/admin/categories'
             ],
             [
             'title' => 'Create Categories',
-            'url' => '/categories/create'
+            'url' => '/admin/categories/create'
             ],
         ]
     ];

@@ -6,72 +6,37 @@
     {{-- article left --}}
     <div class="col-10 d-flex flex-column">
         <div class="col-10 d-flex justify-content-between">
-            <div class="card bg-transparent" style="width: 25rem;">
-                <img src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p>Food and Drink</p>
-                    <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                    <p> May 10, 2020 • 5 mins read </p>
-                    <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+            @foreach ($data1 as $dt)
+                <div class="card bg-transparent" style="width: 25rem;">
+                    <img src="/profile/{{ $dt->image }}" class="card-img-top" alt="...">
+                    <div class="card-body\">
+                        <p>{{ $dt->category->name }}</p>
+                        <h5 class="card-title">{{ $dt->title }}</h5>
+                        <p>{{ $dt->created_at }}</p>
+                        <p class="card-text">{{ $dt->content }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card bg-transparent" style="width: 25rem;">
-                <img src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p>Food and Drink</p>
-                    <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                    <p> May 10, 2020 • 5 mins read </p>
-                    <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         {{--  --}}
         <div class="col-10 d-flex flex-column">
-            <div class="card bg-transparent mb-3" style="max-width: 740px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+            @foreach ($data2 as $dt)
+                <div class="card bg-transparent mb-3" style="max-width: 740px;">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img style="width: 220px"src="/profile/{{ $dt->image }}" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p>{{ $dt->category->name }}</p>
+                            <h5 class="card-title">{{ $dt->title }}</h5>
+                            <p> {{ $dt->created_at }} </p>
+                            <p class="card-text">{{ $dt->content }}</p>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="card bg-transparent mb-3" style="max-width: 740px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="card bg-transparent mb-3" style="max-width: 740px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_3.jpg.pagespeed.ic.Yxq9iGhxek.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     
@@ -97,51 +62,23 @@
             <div class="position-absolute" style="bottom: -10px">Lifestyle</div>
         </div>
         <div class="d-flex flex-column me-1">
-            <div class="card bg-transparent mb-3" style="max-width: 750px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+            @foreach ($data2 as $dt)
+                <div class="card bg-transparent mb-3" style="max-width: 750px;">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img style="width: 220px"src="/profile/{{ $dt->image }}" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p>{{ $dt->category->name }}</p>
+                            <h5 class="card-title">{{ $dt->title }}</h5>
+                            <p>{{ $dt->created_at }}</p>
+                            <p class="card-text">{{ $dt->content }}</p>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="card bg-transparent mb-3" style="max-width: 750px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="card bg-transparent mb-3" style="max-width: 750px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_3.jpg.pagespeed.ic.Yxq9iGhxek.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     
@@ -151,52 +88,24 @@
             <div class="rounded-bottom" style="width: 76px; height:6px ; background: rgb(238, 173, 53); "></div>
             <div class="position-absolute" style="bottom: -10px">Travel</div>
         </div>
-        <div class="d-flex flex-column ms-1">
-            <div class="card bg-transparent mb-3" style="max-width: 750px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+        <div class="d-flex flex-column me-1">
+            @foreach ($data2 as $dt)
+                <div class="card bg-transparent mb-3" style="max-width: 750px;">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img style="width: 220px"src="/profile/{{ $dt->image }}" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p>{{ $dt->category->name }}</p>
+                            <h5 class="card-title">{{ $dt->title }}</h5>
+                            <p>{{ $dt->created_at }}</p>
+                            <p class="card-text">{{ $dt->content }}</p>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="card bg-transparent mb-3" style="max-width: 750px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="card bg-transparent mb-3" style="max-width: 740px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img style="width: 220px"src="https://preview.colorlib.com/theme/content/images/xslider_3.jpg.pagespeed.ic.Yxq9iGhxek.webp" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p>Food and Drink</p>
-                        <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-                        <p> May 10, 2020 • 5 mins read </p>
-                        <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -207,42 +116,17 @@
 </div>
 
 <div class="col-12 d-flex">
-    <div class="card bg-transparent me-3" style="width: 20rem;">
-        <img src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p>Food and Drink</p>
-            <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-            <p> May 10, 2020 • 5 mins read </p>
-            <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+    @foreach ($data3 as $dt)
+        <div class="card bg-transparent me-3" style="width: 20rem;">
+            <img src="/profile/{{ $dt->image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p>{{ $dt->category->name }}</p>
+                <h5 class="card-title">{{ $dt->title }}</h5>
+                <p>{{ $dt->created_at }}</p>
+                <p class="card-text">{{ $dt->content }}</p>
+            </div>
         </div>
-    </div>
-    <div class="card bg-transparent mx-3" style="width: 20rem;">
-        <img src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p>Food and Drink</p>
-            <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-            <p> May 10, 2020 • 5 mins read </p>
-            <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-        </div>
-    </div>
-    <div class="card bg-transparent mx-3" style="width: 20rem;">
-        <img src="https://preview.colorlib.com/theme/content/images/xslider_1.jpg.pagespeed.ic.3OtL1OUixq.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p>Food and Drink</p>
-            <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-            <p> May 10, 2020 • 5 mins read </p>
-            <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-        </div>
-    </div>
-    <div class="card bg-transparent ms-3" style="width: 20rem;">
-        <img src="https://preview.colorlib.com/theme/content/images/xslider_2.jpg.pagespeed.ic.MeMJUfLHS1.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p>Food and Drink</p>
-            <h5 class="card-title">Far far away behind the Word Mountains far from Away</h5>
-            <p> May 10, 2020 • 5 mins read </p>
-            <p class="card-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-        </div>
-    </div>
+    @endforeach
 </div>
 
 {{-- Footer --}}

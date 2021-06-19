@@ -53,7 +53,7 @@ class UserController extends Controller
         // menyimpan file di storage
         // $request->image_file->store('public');
 
-        //menyimpan file di public dengan nama folder profile
+        // menyimpan file di public dengan nama folder profile
         // $image = $request->file('image_file');
         // $new_name_image =time() . '.'. $image->getClientOriginalExtension();
         // $image->move(public_path('profile'), $new_name_image);
