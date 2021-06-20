@@ -14,4 +14,12 @@ class GuestController extends Controller
         $data3 = Article::orderBy('id','desc')->paginate(4);
         return view('pages.index',compact('data1','data2','data3'));
     }
+
+    public function content($id)
+    {
+        $data = Article::findOrFail($id);
+        $data2 = Article::orderBy('id','desc')->paginate(4);
+
+        return view('pages.content',compact('data','data2'));
+    }
 }

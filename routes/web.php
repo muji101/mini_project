@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[GuestController::class, 'home']);
+Route::get('/content/{id}',[GuestController::class, 'content'])->name('article.content');
 
 Route::prefix('admin')->group(function() {
 

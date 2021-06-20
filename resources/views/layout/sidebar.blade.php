@@ -2,7 +2,7 @@
     
     $dashboard = [
         'title' => 'Dashboard',
-        'url' =>'/dashboard',
+        'url' =>'/admin/dashboard',
         'icon' => 'bi bi-grid-fill'
 
     ];
