@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/loginProcess', [AuthController::class, 'loginProcess'])->name('loginProcess');
+Route::post('/registerProcess', [AuthController::class, 'registerProcess'])->name('registerProcess');
 
 Route::get('/',[GuestController::class, 'home']);
 Route::get('/content/{id}',[GuestController::class, 'content'])->name('article.content');
