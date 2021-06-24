@@ -21,10 +21,21 @@
     <title>Hello, world!</title>
 </head>
 <body>
-
     <div class="container">
     @include('pages.layout.navbar')
-
+    <div class="d-flex justify-content-end my-4 position-sticky top-0" style="z-index: 10">
+        <div class="col-md-4">
+            <form action="/search" method="get">
+                <div class="input-group">
+                    <input type="search" name="search" class="form-control">
+                    <span class="input-group-prepend">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 
     @include('pages.layout.slide')
 

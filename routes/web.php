@@ -4,7 +4,6 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[GuestController::class, 'home']);
 Route::get('/content/{id}',[GuestController::class, 'content'])->name('article.content');
+Route::get('/search',[GuestController::class, 'search']);
+
 
 Route::prefix('admin')->group(function() {
 

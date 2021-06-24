@@ -22,4 +22,19 @@ class GuestController extends Controller
 
         return view('pages.content',compact('data','data2'));
     }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $articles = Article::where('content', 'like', '%'.$search.'%')->orderBy('id','desc')->paginate(3);
+        return view('pages.search', ['articles' => $articles]);
+    }
+
+    // public function search(Request $request)
+    // {
+    //     $keyword = $request->search;
+    //     $articles = Article::where('title', 'like', "%" . $keyword . "%")->paginate(5);
+    //     return view('pages.search', compact('articles'))->with('i', (request()->input('page', 1) - 1) * 5);
+    // }
+
+    
 }

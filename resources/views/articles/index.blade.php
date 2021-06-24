@@ -2,7 +2,6 @@
 
 @section('title', 'Articles')
 
-@section('active2', 'active')
 
 @section('main_title', 'Articles Page')
 

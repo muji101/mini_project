@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @section('title', 'Dashboard')
-@section('active1', 'active')
 
 @section('main_title', 'Dashboard')
 

@@ -2,8 +2,6 @@
 
 @section('title', 'Categories')
 
-@section('active3', 'active')
-
 @section('button', 'Create')
 
 @section('main_title', 'Categories Page')

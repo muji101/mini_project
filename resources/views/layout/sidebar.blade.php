@@ -1,4 +1,6 @@
 @php
+    $current_path = '/'.request()->path(); //mengambil nama url 
+
     
     $dashboard = [
         'title' => 'Dashboard',
@@ -9,9 +11,9 @@
 
     $user = [
         'title' => 'Users',
-        'url' => '#',
+        'url' =>'#',
         'icon' => 'bi bi-person-fill',
-        'childerns' => [
+        'childrens' => [
             [
             'title' => 'Liset Users',
             'url' => '/admin/users'
@@ -27,7 +29,7 @@
         'title' => 'Articles',
         'url' => '#',
         'icon' => 'bi bi-border-width',
-        'childerns' => [
+        'childrens' => [
             [
             'title' => 'Liset Articles',
             'url' => '/admin/articles'
@@ -44,7 +46,7 @@
         'title' => 'Categories',
         'url' => '#',
         'icon' => 'bi bi-grid-fill',
-        'childerns' => [
+        'childrens' => [
             [
             'title' => 'Liset Categories',
             'url' => '/admin/categories'
@@ -79,14 +81,27 @@
 
                 @foreach ($menus as $menu)
                     {{-- isset() mengecek ada atau nggak suatu data kalau ada true kalo tidak false --}}
-                    @if (isset($menu['childerns']))
-                        <li class="sidebar-item  has-sub">
+                    @if (isset($menu['childrens']))
+
+                        @php
+
+                            // mengambil nama url jika sama menjadi true (url sama url sekarang)
+                            $isActive = false;
+
+                            foreach ($menu['childrens'] as $child){
+                                if ($child['url'] == $current_path){
+                                    $isActive = true;
+                                }
+                            }
+                        @endphp
+                        
+                        <li class="sidebar-item  has-sub {{ $isActive ? 'active' : '' }}">
                             <a href="{{ $menu['url'] }}" class='sidebar-link'>
                                 <i class="{{ $menu['icon'] }}"></i>
                                 <span>{{ $menu['title'] }}</span>
                             </a>
-                            <ul class="submenu ">
-                                @foreach ($menu['childerns'] as $item)
+                            <ul class="submenu {{ $isActive ? 'active' : '' }}">
+                                @foreach ($menu['childrens'] as $item)
                                     <li class="submenu-item ">
                                         <a href="{{ $item['url'] }}">{{ $item['title'] }}</a>
                                     </li>
@@ -95,7 +110,8 @@
                             
                         </li>
                     @else
-                        <li class="sidebar-item @yield('active1')">
+                        {{-- karena dashboard tidak memiliki child jadi langsung ke $current_path --}}
+                        <li class="sidebar-item {{ $current_path == $menu['url'] ? 'active' : '' }}">
                             <a href="{{ $menu['url'] }}" class='sidebar-link'>
                                 <i class="{{ $menu['icon'] }}"></i>
                                 <span>{{ $menu['title'] }}</span>
