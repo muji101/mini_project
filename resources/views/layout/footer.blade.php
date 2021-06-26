@@ -9,6 +9,12 @@
 {{-- slidejs --}}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 
+{{-- ckeditor --}}
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'editor' );
+</script>
+
 {{-- Footer --}}
 <hr>
 

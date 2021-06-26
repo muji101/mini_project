@@ -17,7 +17,7 @@
                 </span>
             </div>
             <div class="col-9 d-flex flex-column ms-5">
-                <p>{{ $data->content }}</p>   
+                <p>{!! $data->content !!}</p>   
             </div>
         </div>
         
@@ -51,7 +51,7 @@
                         <p>{{ $dt->created_at }}</p>
                         <p class="card-text"> 
                             {{-- // membatasi kata dalam artikel --}}
-                            {{ str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content }}
+                            {!! str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content !!}
                         </p>
                     </div>
                 </a>

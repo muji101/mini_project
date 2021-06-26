@@ -19,7 +19,7 @@
                           <p>{{ $dt->created_at }}</p>
                           <p class="card-text"> 
                             {{-- // membatasi kata dalam artikel --}}
-                            {{ str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content }}
+                            {!! str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content !!}
                           </p>
                       </div>
                     </a>
@@ -42,7 +42,7 @@
                             <p> {{ $dt->created_at }} </p>
                             <p class="card-text"> 
                               {{-- // membatasi kata dalam artikel --}}
-                              {{ str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content }}
+                              {!! str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content !!}
                             </p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             <p>{{ $dt->created_at }}</p>
                             <p class="card-text"> 
                               {{-- // membatasi kata dalam artikel --}}
-                              {{ str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content }}
+                              {!! str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content !!}
                             </p>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                             <p>{{ $dt->created_at }}</p>
                             <p class="card-text"> 
                               {{-- // membatasi kata dalam artikel --}}
-                              {{ str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content }}
+                              {!! str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content !!}
                             </p>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                 <p>{{ $dt->created_at }}</p>
                 <p class="card-text"> 
                   {{-- // membatasi kata dalam artikel --}}
-                  {{ str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content }}
+                  {!! str_word_count($dt->content) > 5 ? substr($dt->content, 0, 50) . ' ...' : $dt->content !!}
                 </p>
             </div>
           </a>

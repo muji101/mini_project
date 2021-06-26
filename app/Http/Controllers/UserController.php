@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -107,14 +108,26 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $data = User::find($id);
-
+        if($request->password){
         $request->validate([
             'name'=> 'required|min:5|max:25',
-            'email'=> 'required|min:5|max:25|email:rfc,dns',
+            'email'=> 'required|min:5|max:25|email:rfc,dns|unique:users,email,'.$id,
             'current_password' => 'required',
-            'password', 
+            'password' =>'required|min:5|confirmed',
             'image'
         ]);
+
+        $request->merge([
+            'password' => Hash::make($request->password)
+        ]);
+
+        }else{
+            $request->validate([
+                'name'=> 'required|min:5|max:25',
+                'email'=> 'required|min:5|max:25|email:rfc,dns|unique:users,email,'. $id,
+                'image' => 'required'
+            ]);
+        }
 
         if($request->file('image_file') == null){
             $request->merge([
@@ -135,7 +148,14 @@ class UserController extends Controller
         // ]);
 
         
-        $data->update($request->all());
+        
+
+        if ($request->password) {
+            $data->update($request->all());
+        }else{
+            $data->update($request->except('password'));
+        }
+        
         // if ($request->current_password == $data->password) {
         //     $data->update($request->all());
         // }else{

@@ -25,7 +25,7 @@ class ArticleRequest extends FormRequest
     {
         return [
             'title'         => 'required|string|min:10|max:200',
-            'content'       => 'required|min:10|max:1000',
+            'content'       => 'required|min:10',
             'image_file'    => 'required',
             'user_id'       => 'required',
             'category_id'   => 'required'

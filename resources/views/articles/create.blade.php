@@ -47,10 +47,10 @@
                                     <div class="form-group has-icon-left">
                                         <label for="email-id-icon">Content</label>
                                         <div class="position-relative">
-                                            <textarea type="text" class="form-control"
+                                            <textarea id="editor"type="text" class="form-control"
                                                 placeholder="Content" id="email-id-icon" name="content"></textarea>
                                             <div class="form-control-icon">
-                                                <i class="bi bi-envelope"></i>
+                                                {{-- <i class="bi bi-envelope"></i> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -73,14 +73,13 @@
                                 <div class="col-12">
                                     <div class="form-group has-icon-left">
                                         <div class="form-group">
-                                            <label for="mobile-id-icon">User</label>
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            {{-- <label for="mobile-id-icon">User</label>
                                             <select class="choices form-select" name="user_id">
                                                 @foreach ($users as $data)
                                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                                 @endforeach
-                                                {{-- <option value="muji">muji1</option>
-                                                <option value="muji2">muji2</option> --}}
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </div>
                                 </div>

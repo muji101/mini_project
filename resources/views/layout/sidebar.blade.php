@@ -120,26 +120,19 @@
                     @endif
                 @endforeach
                 
-                
-
-                {{-- <li class="sidebar-item @yield('active2')">
-                    <a href="/articles" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
-                        <span>Articles</span>
-                    </a>
+                <li class="sidebar-item">
+                    {{-- <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="sidebar-link btn btn-danger text-dark">
+                        <i class="bi bi-box-arrow-left text-dark"></i>
+                        <span>Logout</span>
+                    </a> --}}
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="sidebar-link btn btn-danger text-dark w-100">
+                            <i class="bi bi-box-arrow-left text-dark"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
                 </li>
-                <li class="sidebar-item @yield('active3')">
-                    <a href="/categories" class='sidebar-link'>
-                        <i class="bi bi-grid-1x2-fill"></i>
-                        <span>Categories</span>
-                    </a>
-                </li>
-                <li class="sidebar-item @yield('active4')">
-                    <a href="/users" class='sidebar-link'>
-                        <i class="bi bi-person-badge-fill"></i>
-                        <span>Users</span>
-                    </a>
-                </li> --}}
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

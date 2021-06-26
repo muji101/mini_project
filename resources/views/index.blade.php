@@ -75,10 +75,10 @@
     </div>
     <div class="col-12 col-lg-3">
         <div class="card">
-            <div class="card-body py-4 px-5">
+            <div class="card-body py-4">
                 <div class="d-flex align-items-center">
                     <div class="avatar avatar-xl">
-                        <img src="/dist/assets/images/faces/6.jpg" alt="Face 6">
+                        <img src="/profile/{{ Auth::user()->image }}" alt="Face 6">
                     </div>
                     <div class="ms-3 name">
                         <h5 class="font-bold">{{ Auth::user()->name }}</h5>

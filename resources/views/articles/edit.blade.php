@@ -47,10 +47,10 @@
                                     <div class="form-group has-icon-left">
                                         <label for="email-id-icon">Content</label>
                                         <div class="position-relative">
-                                            <textarea type="text" class="form-control"
+                                            <textarea id="editor" type="text" class="form-control"
                                                 placeholder="Content" id="email-id-icon" name="content">{{ old('content', $articles->content) }}</textarea>
                                             <div class="form-control-icon">
-                                                <i class="bi bi-envelope"></i>
+                                                {{-- <i class="bi bi-envelope"></i> --}}
                                             </div>
                                         </div>
                                     </div>

@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-body">
                     <div><img src="/profile/{{ $data->image }}" alt="gambar" style="width: 450px"></div>
-                    {{ $data->content }}
+                    {!! $data->content !!}
                 </div>
             </div>
         </section>

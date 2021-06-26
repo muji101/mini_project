@@ -43,7 +43,7 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td class="text-bold-500">{{ $item->title }}</td>
-                                        <td>{{ $item->content }}</td>
+                                        <td>{!! str_word_count($item->content) > 5 ? substr($item->content, 0, 50) . ' ...' : $item->content !!}</td>
                                         <td class="text-bold-500"><img src="/profile/{{ $item->image }}" alt="gambar" style="width: 60px"></td>
                                         {{-- <td class="text-bold-500"><a href="{{ store('app/public/'. $item->gambar) }}"></a></td> --}}
                                         <td class="text-bold-500">{{ $item->user->name }}</td>
