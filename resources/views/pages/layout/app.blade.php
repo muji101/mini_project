@@ -34,13 +34,13 @@
                 </div>
             </form>
         </div>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+        {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
             <button class="sidebar-link btn btn-danger text-dark w-100">
                 <i class="bi bi-box-arrow-left text-dark"></i>
                 <span>Logout</span>
             </button>
-        </form>
+        </form> --}}
     </div>
     
 
