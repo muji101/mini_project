@@ -83,6 +83,18 @@
                     <div class="ms-3 name">
                         <h5 class="font-bold">{{ Auth::user()->name }}</h5>
                         <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
+                        <h6 class="mt-2
+
+                        @if (Auth::user()->roles == 'admin')
+                            text-success
+                        @elseif (Auth::user()->roles == 'superuser')
+                            text-warning
+                        @else
+                            text-danger
+                        @endif
+                        
+                        ">Role: {{ Auth::user()->roles }}</h6>
+                        
                     </div>
                 </div>
             </div>

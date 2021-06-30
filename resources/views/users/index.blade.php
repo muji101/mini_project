@@ -51,13 +51,20 @@
                                             {{-- memanggil gambar di public --}}
                                         <td class="text-bold-500"><img src="/profile/{{  $data->image }}" alt="image profile" style="width: 60px; height: 60px;"></td>
                                         <td>
-                                            <a href="{{ route('user.edit', $data->id) }}" class="btn btn-warning btn-small">edit</a>
-                                            <a href="{{ route('user.detail', $data->id) }}" class="btn btn-success btn-small">detail</a>
-                                            <form class="d-inline-block" action="{{ route('user.delete', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-small">delete</button>
-                                            </form>
+                                            @if (Auth::user()->roles == 'admin')
+                                                <a href="{{ route('user.edit', $data->id) }}" class=""><i class="bi bi-pencil-fill text-warning"></i></a>
+                                                <a href="{{ route('user.detail', $data->id) }}" class=""><i class="bi bi-eye-fill mx-3"></i></a>
+                                                <form class="d-inline-block" action="{{ route('user.delete', $data->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-small"><i class="bi bi-trash-fill text-white"></i></button>
+                                                </form>
+                                            @elseif(Auth::user()->roles == 'superuser')
+                                                <a href="{{ route('user.edit', $data->id) }}" class=""><i class="bi bi-pencil-fill text-warning"></i></a>
+                                                <a href="{{ route('user.detail', $data->id) }}" class=""><i class="bi bi-eye-fill mx-3"></i></a>
+                                            @else
+                                                <i class="bi bi-trash-fill text-danger"></i>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

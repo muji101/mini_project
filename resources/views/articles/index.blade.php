@@ -49,13 +49,20 @@
                                         <td class="text-bold-500">{{ $item->user->name }}</td>
                                         <td class="text-bold-500">{{ $item->category->name }}</td>
                                         <td>
-                                            <a href="{{ route('article.edit', $item->id) }}" class="btn btn-warning btn-small">edit</a>
-                                            <a href="{{ route('article.detail', $item->id) }}" class="btn btn-success btn-small">detail</a>
-                                            <form class="d-inline-block" action="{{ route('article.delete', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-small">delete</button>
-                                            </form>
+                                            @if (Auth::user()->roles == 'admin')
+                                                <a href="{{ route('article.edit', $item->id) }}" class="btn btn-warning btn-small">edit</a>
+                                                <a href="{{ route('article.detail', $item->id) }}" class="btn btn-success btn-small">detail</a>
+                                                <form class="d-inline-block" action="{{ route('article.delete', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-small">delete</button>
+                                                </form>
+                                            @elseif(Auth::user()->roles == 'superuser')
+                                                <a href="{{ route('article.edit', $item->id) }}" class="btn btn-warning btn-small">edit</a>
+                                                <a href="{{ route('article.detail', $item->id) }}" class="btn btn-success btn-small">detail</a>
+                                            @endif
+                                                Hanya Admin
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

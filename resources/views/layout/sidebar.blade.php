@@ -58,6 +58,7 @@
         ]
     ];
 
+
     $menus = [$dashboard, $user , $article, $categories];
     
     
@@ -79,7 +80,7 @@
                 
                 <li class="sidebar-title">Menu</li>
 
-                @foreach ($menus as $menu)
+                @foreach ($menus  as $menu)
                     {{-- isset() mengecek ada atau nggak suatu data kalau ada true kalo tidak false --}}
                     @if (isset($menu['childrens']))
 
@@ -88,28 +89,72 @@
                             // mengambil nama url jika sama menjadi true (url sama url sekarang)
                             $isActive = false;
 
-                            foreach ($menu['childrens'] as $child){
+                            foreach ($menu['childrens']  as $child){
                                 if ($child['url'] == $current_path){
                                     $isActive = true;
                                 }
                             }
                         @endphp
                         
-                        <li class="sidebar-item  has-sub {{ $isActive ? 'active' : '' }}">
-                            <a href="{{ $menu['url'] }}" class='sidebar-link'>
-                                <i class="{{ $menu['icon'] }}"></i>
-                                <span>{{ $menu['title'] }}</span>
-                            </a>
-                            <ul class="submenu {{ $isActive ? 'active' : '' }}">
-                                @foreach ($menu['childrens'] as $item)
-                                    <li class="submenu-item ">
-                                        <a href="{{ $item['url'] }}">{{ $item['title'] }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                            
-                        </li>
+                        @if (Auth::user()->roles == 'admin')
+                        
+                            <li class="sidebar-item  has-sub {{ $isActive ? 'active' : '' }}">
+                                <a href="{{ $menu['url'] }}" class='sidebar-link'>
+                                    <i class="{{ $menu['icon'] }}"></i>
+                                    <span>{{ $menu['title'] }}</span>
+                                </a>
+                                    
+                                <ul class="submenu {{ $isActive ? 'active' : '' }}">
+                                    @foreach ($menu['childrens'] as $item)
+                                        <li class="submenu-item ">
+                                            <a href="{{ $item['url'] }}">{{ $item['title'] }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                                
+                            </li>
+                        @elseif (Auth::user()->roles == 'superuser')
+                            <li class="sidebar-item  has-sub {{ $isActive ? 'active' : '' }}">
+                                <a href="{{ $menu['url'] }}" class='sidebar-link'>
+                                    <i class="{{ $menu['icon'] }}"></i>
+                                    <span>{{ $menu['title'] }}</span>
+                                </a>
+                                    
+                                <ul class="submenu {{ $isActive ? 'active' : '' }}">
+                                    @foreach ($menu['childrens'] as $item)
+                                        <li class="submenu-item ">
+                                            <a href="{{ $item['url'] }}">{{ $item['title'] }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                                
+                            </li>
+                        @else
+                        
+                            <li class="sidebar-item  has-sub {{ $isActive ? 'active' : '' }}">
+                                <a href="{{ $menu['url'] }}" class='sidebar-link'>
+                                    <i class="{{ $menu['icon'] }}"></i>
+                                    <span>{{ $menu['title'] }}</span>
+                                </a>
+                                    
+                                <ul class="submenu {{ $isActive ? 'active' : '' }}">
+
+                                    {{-- view sidebar user --}}
+
+                                        <li class="submenu-item ">
+                                            <a href="{{ $menu['childrens'][0]['url'] }}">{{ $menu['childrens'][0]['title'] }}</a>
+                                        </li>
+                                    
+                                </ul>
+    
+                                
+                            </li>
+                        
+                        @endif
                     @else
+                        
                         {{-- karena dashboard tidak memiliki child jadi langsung ke $current_path --}}
                         <li class="sidebar-item {{ $current_path == $menu['url'] ? 'active' : '' }}">
                             <a href="{{ $menu['url'] }}" class='sidebar-link'>

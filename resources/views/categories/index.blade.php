@@ -38,12 +38,16 @@
                                         <td>{{ $no++ }}</td>
                                         <td class="text-bold-500">{{ $data->name }}</td>
                                         <td>
-                                            <a href="{{ route('category.edit', $data->id) }}" class="btn btn-warning btn-small">edit</a>
-                                            <form class="d-inline-block" action="{{ route('category.delete', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-small">delete</button>
-                                            </form>
+                                            @if (Auth::user()->roles == 'admin')
+                                                <a href="{{ route('category.edit', $data->id) }}" class="btn btn-warning btn-small">edit</a>
+                                                <form class="d-inline-block" action="{{ route('category.delete', $data->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-small">delete</button>
+                                                </form>
+                                            @else
+                                                Hanya Admin
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
